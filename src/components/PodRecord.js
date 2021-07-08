@@ -4,7 +4,7 @@ const PodRecord = ({pod}) => {
     return (
         <div className="secton">
             <div className="card">
-                <div class="row">
+                <div className="row">
                     <div className="col s1 record_id">{pod.id}</div>
                     <div className="col s2">{pod.name}</div>
                     <div className="col s1">{pod.type}</div>

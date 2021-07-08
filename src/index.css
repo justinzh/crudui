@@ -25,3 +25,7 @@ button.header {
   border: none;
   background: none;
 }
+
+select.header {
+  display: inline;
+}

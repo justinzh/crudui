@@ -88,7 +88,6 @@ export const updatePod = (pod) => {
             .then(res => res.json())
             .then(data => {
                 const upod = data.data.updatePod;
-                console.log(upod);
                 dispatch({type: 'UPDATE_POD', upod});
             })
             .catch((err) => dispatch({type: 'UPDATE_POD_ERROR'}, err));

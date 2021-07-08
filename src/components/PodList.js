@@ -12,7 +12,6 @@ class PodList extends Component {
     }
 
     handleClick = (e) => {
-        console.log(e.target.name);
         const query = {sortkey: e.target.name, descending: !this.state[e.target.name]}
 
         var new_state = this.state;
@@ -24,7 +23,6 @@ class PodList extends Component {
 
     render() {
         const {pods} = this.props;
-        console.log(this.props);
         return (
             <div className="container">
                 <div className="section">
@@ -35,7 +33,7 @@ class PodList extends Component {
                     <div className="col s2"><button className="header" name="description" onClick = {this.handleClick}>description</button></div>
                 </div>
                 {pods && pods.map(pod => {
-                    return <Link to = {'/pod/' + pod.id} >
+                    return <Link to = {'/pod/' + pod.id} key = {pod.id}>
                         <PodRecord pod = {pod} key = {pod.id}></PodRecord>
                     </Link>
                 })}
@@ -50,7 +48,6 @@ const mapDispatchToPros = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         pods: state.pods
     }

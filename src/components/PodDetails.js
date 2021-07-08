@@ -19,7 +19,6 @@ export class PodDetails extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         if(e.nativeEvent.submitter.name==='update') {
-            console.log(this.state);
             this.props.updatePod(this.state);
             this.props.history.push('/');
         }
@@ -64,7 +63,6 @@ const mapStateToProps  = (state, ownProps) => {
     const id = ownProps.match.params.id;
     const pods = state.pods;
     const pod = pods ? pods.find(e => e.id===id) : null;
-    console.log('mapstate', pod, pods, id);
     return {pod: pod};
 }
 
