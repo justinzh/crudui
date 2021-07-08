@@ -5,20 +5,50 @@ import { Link } from 'react-router-dom';
 import { searchPod } from '../podAction';
 
 class PodList extends Component {
+    state = {
+        category:'name', 
+        input:'', 
+        sortkey:'name', 
+        descending:false, id:false, type:false, description:false}
 
-    state = {id:false, type:false, description:false}
     componentDidMount(){
         this.props.searchPod({});
     }
 
     handleClick = (e) => {
-        const query = {sortkey: e.target.name, descending: !this.state[e.target.name]}
+        let sortkey = 'name';
+        if(e.target.name!=='search')
+            sortkey = e.target.name;
+
+        let query = {
+                category: this.state.category, 
+                input: this.state.input,
+                sortkey: sortkey, 
+                descending: !this.state.descending
+            }
+        
+        this.props.searchPod(query);
 
         var new_state = this.state;
-        new_state[e.target.name] = !this.state[e.target.name];
-        this.setState(new_state);
+        if(e.target.name!=='search') {
+            new_state.sortkey = e.target.name;
+            new_state.descending = !this.state.descending;
+        }
 
-        this.props.searchPod(query);
+        this.setState({...new_state});
+    }
+
+    handleChange = (e) => {
+        const id = e.target.id;
+        const input = e.target.value;
+
+        if(id==='searchfield') {
+            const newState = {input: input};
+            this.setState({...newState});
+        } else if(id==='category') {
+            const newState = {category: input};
+            this.setState({...newState})
+        }
     }
 
     render() {
@@ -31,6 +61,21 @@ class PodList extends Component {
                     <div className="col s2"><button className="header" name="name" onClick = {this.handleClick}>name</button></div>
                     <div className="col s1"><button className="header" name="type" onClick = {this.handleClick}>type</button></div>
                     <div className="col s2"><button className="header" name="description" onClick = {this.handleClick}>description</button></div>
+                    <div className="col s1">
+                        <button name='search' onClick = {this.handleClick}>search</button>
+                    </div>
+                    <div className="col s2">
+                    <input type="text" id="searchfield" onChange = {this.handleChange}/>
+                    </div>
+                    <div className="col s1">on</div>                     
+                    <div className="col s2"> 
+                        <select className="header" id = "category" onChange = {this.handleChange}>
+                            <option value="Name">name</option>
+                            <option value="type">type</option>
+                            <option value="description">description</option>
+                        </select>
+                    </div>
+
                 </div>
                 {pods && pods.map(pod => {
                     return <Link to = {'/pod/' + pod.id} key = {pod.id}>

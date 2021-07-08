@@ -31,16 +31,9 @@ export const createPod = (pod) => {
 
 export const searchPod = (query) => {
     return (dispatch, getState) => {
-        var {name, type, description, sortkey, descending} = query;
-
-        sortkey = sortkey == null ? 'id' : sortkey;     
-        descending = descending == null ? true : descending;     
-        name = name == null ? '' : name; 
-        type = type == null ? '' : type;
-
         const payload = `
             query { 
-                searchPod(name:"${name}", type:"${type}", description:"${description}", sortkey:"${sortkey}", descending: ${descending}) { 
+                searchPod(${query.category}:"${query.input}", sortkey:"${query.sortkey}", descending: ${query.descending}) { 
                     id 
                     name 
                     type 
@@ -48,7 +41,7 @@ export const searchPod = (query) => {
                     creation_time 
                 }
             }`
-
+        console.log(payload);
         const requestOptions = {
             method: 'POST',
             body: JSON.stringify({query:payload})
