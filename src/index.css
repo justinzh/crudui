@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.record_time {
+  font-size: 11px;
+}
+
+.record_id {
+  font-size: 10px;
+}
+
+button.header {
+  padding: 0;
+  border: none;
+  background: none;
+}
