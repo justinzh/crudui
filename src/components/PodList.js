@@ -56,33 +56,34 @@ class PodList extends Component {
         return (
             <div className="container">
                 <div className="section">
-                <div className="row">
-                    <div className="col s1"><button className="header" name="id" onClick = {this.handleClick}>id</button></div>
-                    <div className="col s2"><button className="header" name="name" onClick = {this.handleClick}>name</button></div>
-                    <div className="col s1"><button className="header" name="type" onClick = {this.handleClick}>type</button></div>
-                    <div className="col s2"><button className="header" name="description" onClick = {this.handleClick}>description</button></div>
-                    <div className="col s1">
-                        <button name='search' onClick = {this.handleClick}>search</button>
-                    </div>
-                    <div className="col s2">
-                    <input type="text" id="searchfield" onChange = {this.handleChange}/>
-                    </div>
-                    <div className="col s1">on</div>                     
-                    <div className="col s2"> 
-                        <select className="header" id = "category" onChange = {this.handleChange}>
-                            <option value="Name">name</option>
-                            <option value="type">type</option>
-                            <option value="description">description</option>
-                        </select>
+                    <div className="row">
+                        <div className="col s1"><button className="header input-field" name="id" onClick = {this.handleClick}>id</button></div>
+                        <div className="col s2"><button className="header input-field" name="name" onClick = {this.handleClick}>name</button></div>
+                        <div className="col s1"><button className="header input-field" name="type" onClick = {this.handleClick}>type</button></div>
+                        <div className="col s2"><button className="header input-field" name="description" onClick = {this.handleClick}>description</button></div>
+                        <div className="col s1">
+                            <button className="input-field" name='search' onClick = {this.handleClick}>search</button>
+                        </div>
+                        <div className="col s2" >
+                            <input className="input-field" type="text" id="searchfield" onChange = {this.handleChange}/>
+                        </div>
+                        <div className="col s1"><button className="input-field header">on</button></div>                     
+                        <div className="col s2"> 
+                            <select className="header" id = "category" onChange = {this.handleChange}>
+                                <option value="Name">name</option>
+                                <option value="type">type</option>
+                                <option value="description">description</option>
+                            </select>
+                        </div>
                     </div>
 
+                    {pods && pods.map(pod => {
+                        return <Link to = {'/pod/' + pod.id} key = {pod.id}>
+                            <PodRecord pod = {pod} key = {pod.id}></PodRecord>
+                        </Link>
+                    })}
                 </div>
-                {pods && pods.map(pod => {
-                    return <Link to = {'/pod/' + pod.id} key = {pod.id}>
-                        <PodRecord pod = {pod} key = {pod.id}></PodRecord>
-                    </Link>
-                })}
-            </div></div>
+            </div>
         )
     }
 }
