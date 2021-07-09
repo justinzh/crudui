@@ -12,7 +12,12 @@ class PodList extends Component {
         descending:false, id:false, type:false, description:false}
 
     componentDidMount(){
-        this.props.searchPod({});
+        this.props.searchPod({
+                category:'name',
+                input:"",
+                sortkey:'id',
+                descending: false
+            });
     }
 
     handleClick = (e) => {
