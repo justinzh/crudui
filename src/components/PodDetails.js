@@ -31,9 +31,9 @@ export class PodDetails extends Component {
     render() {
         const pod = this.props.pod;
 
-        var formcontent = pod ? 
+        let formcontent = pod ? 
                 <form onSubmit = {this.handleSubmit} className="white">
-                    <h5 className="grey-text tex-darken-3">{"Pod Id:" + pod.id + " created on 7/1/2021" }</h5>
+                    <h6 className="grey-text tex-darken-3">{"Pod No." + pod.id + " created on " + pod.creation_time }</h6>
                     <div className="input-field">
                         <label htmlFor="name">{pod.name}</label>                            
                         <input type="text" id="name" onChange={this.handleChange}/>
