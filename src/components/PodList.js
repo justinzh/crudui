@@ -64,10 +64,10 @@ class PodList extends Component {
             <div className="container">
                 <div className="section">
                     <div className="row" style = {{position: "relative", top: "35px"}}>
-                        <button className="col s1 header input-field waves-effect waves-teals" name="id" onClick = {this.handleClick}>id</button>
-                        <button className="col s2 header input-field waves-effect waves-teals" name="name" onClick = {this.handleClick}>name</button>
-                        <button className="col s1 header input-field waves-effect waves-teals" name="type" onClick = {this.handleClick}>type</button>
-                        <button className="col s2 header input-field waves-effect waves-teals" name="description" onClick = {this.handleClick}>description</button>
+                        <button className="col s1 header input-field waves-effect waves-teals left-align" name="id" onClick = {this.handleClick}>id</button>
+                        <button className="col s2 header input-field waves-effect waves-teals left-align" name="name" onClick = {this.handleClick}>name</button>
+                        <button className="col s1 header input-field waves-effect waves-teals left-align" name="type" onClick = {this.handleClick}>type</button>
+                        <button className="col s2 header input-field waves-effect waves-teals left-align" name="description" onClick = {this.handleClick}>description</button>
                         <form>
                             <button className="input-field col s1 waves-effect waves-teals" name='search' onClick = {this.handleClick}>search</button>
                             <div className="input-field col s2" style = {{position: "relative", top: "-15px"}} >
