@@ -21,6 +21,8 @@ class PodList extends Component {
     }
 
     handleClick = (e) => {
+        e.preventDefault();
+
         let sortkey = 'name';
         if(e.target.name!=='search')
             sortkey = e.target.name;
@@ -31,7 +33,7 @@ class PodList extends Component {
                 sortkey: sortkey, 
                 descending: !this.state.descending
             }
-        
+
         this.props.searchPod(query);
 
         var new_state = this.state;
@@ -61,25 +63,24 @@ class PodList extends Component {
         return (
             <div className="container">
                 <div className="section">
-                    <div className="row">
-                        <div className="col s1"><button className="header input-field" name="id" onClick = {this.handleClick}>id</button></div>
-                        <div className="col s2"><button className="header input-field" name="name" onClick = {this.handleClick}>name</button></div>
-                        <div className="col s1"><button className="header input-field" name="type" onClick = {this.handleClick}>type</button></div>
-                        <div className="col s2"><button className="header input-field" name="description" onClick = {this.handleClick}>description</button></div>
-                        <div className="col s1">
-                            <button className="input-field" name='search' onClick = {this.handleClick}>search</button>
-                        </div>
-                        <div className="col s2" >
-                            <input className="input-field" type="text" id="searchfield" onChange = {this.handleChange}/>
-                        </div>
-                        <div className="col s1"><button className="input-field header">on</button></div>                     
-                        <div className="col s2"> 
-                            <select className="header" id = "category" onChange = {this.handleChange}>
+                    <div className="row" style = {{position: "relative", top: "35px"}}>
+                        <button className="col s1 header input-field waves-effect waves-teals" name="id" onClick = {this.handleClick}>id</button>
+                        <button className="col s2 header input-field waves-effect waves-teals" name="name" onClick = {this.handleClick}>name</button>
+                        <button className="col s1 header input-field waves-effect waves-teals" name="type" onClick = {this.handleClick}>type</button>
+                        <button className="col s2 header input-field waves-effect waves-teals" name="description" onClick = {this.handleClick}>description</button>
+                        <form>
+                            <button className="input-field col s1 waves-effect waves-teals" name='search' onClick = {this.handleClick}>search</button>
+                            <div className="input-field col s2" style = {{position: "relative", top: "-15px"}} >
+                                <input type="text" id="searchfield" onChange = {this.handleChange}/>
+                                <label htmlFor="searchfeild" className="center-align">keyword</label>
+                            </div>
+                            <button className="col s1 input-field header">on</button>                 
+                            <select className="col s2 header" id = "category" onChange = {this.handleChange}>
                                 <option value="Name">name</option>
                                 <option value="type">type</option>
                                 <option value="description">description</option>
                             </select>
-                        </div>
+                        </form>
                     </div>
 
                     {pods && pods.map(pod => {
