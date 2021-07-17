@@ -76,7 +76,7 @@ class PodList extends Component {
                             </div>
                             <button className="col s1 input-field header">on</button>                 
                             <select className="col s2 header" id = "category" onChange = {this.handleChange}>
-                                <option value="Name">name</option>
+                                <option value="name">name</option>
                                 <option value="type">type</option>
                                 <option value="description">description</option>
                             </select>

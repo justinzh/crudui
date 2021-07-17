@@ -31,6 +31,8 @@ export const createPod = (pod) => {
 
 export const searchPod = (query) => {
     return (dispatch, getState) => {
+        console.log("query--->", query);
+
         const payload = `
             query { 
                 searchPod(${query.category}:"${query.input}", sortkey:"${query.sortkey}", descending: ${query.descending}) { 

@@ -16,7 +16,6 @@ export class CreatePod extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.createPod(this.state);
-        this.props.searchPod({});
 
         this.props.history.push('/');
     }
