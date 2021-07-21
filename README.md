@@ -83,7 +83,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 crudui is hosted at:
 https://dhweb.z13.web.core.windows.net/
 
-its backend api is hosted at:
+its backend api is hosted in azure docker container at:
 http://demo-graphql-springboot-justin.eastus.azurecontainer.io:8080/api/v1/pod
 
 an azure api management was configured for it, and its public access address is:
