@@ -1,4 +1,4 @@
-import api from "./api";
+import api, {key_name, key_value} from "./api";
 
 export const createPod = (pod) => {
     return (dispatch, getState) => {
@@ -16,7 +16,7 @@ export const createPod = (pod) => {
 
         const requestOptions = {
             method: 'POST',
-            mode: 'no-cors',
+            headers: {'Content-Type':'application/json', [key_name]:key_value},
             body: JSON.stringify({query:payload})
         };
 
@@ -46,12 +46,13 @@ export const searchPod = (query) => {
         console.log(payload);
         const requestOptions = {
             method: 'POST',
+            headers: {'Content-Type':'application/json', [key_name]:key_value},
             body: JSON.stringify({query:payload})
         };
-
         fetch(api, requestOptions)
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 const pods = {pods: data.data.searchPod};
                 dispatch({type: 'SEARCH_POD', pods });
             })
@@ -76,6 +77,7 @@ export const updatePod = (pod) => {
 
         const requestOptions = {
             method: 'POST',
+            headers: {'Content-Type':'application/json', [key_name]:key_value},
             body: JSON.stringify({query:payload})
         };
 
@@ -98,6 +100,7 @@ export const deletePod = (id) => {
 
         const requestOptions = {
             method: 'POST',
+            headers: {'Content-Type':'application/json', [key_name]:key_value},
             body: JSON.stringify({query:payload})
         };
 
