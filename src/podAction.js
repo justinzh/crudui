@@ -22,7 +22,12 @@ export const createPod = (pod) => {
 
         fetch(api, requestOptions)
             .then(res => res.json())
-            .then(data => dispatch({type: 'CREATE_POD', data}))
+            .then(data => {
+                if(data.errors)
+                    dispatch({type: 'CREATE_POD_ERROR', err: data.errors});
+                else
+                    dispatch({type: 'CREATE_POD', data})
+            })
             .catch((err)=> {
                 dispatch({type: 'CREATE_POD_ERROR', err})
             });
