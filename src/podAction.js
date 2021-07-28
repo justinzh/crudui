@@ -57,7 +57,6 @@ export const searchPod = (query) => {
         fetch(api, requestOptions)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
                 const pods = {pods: data.data.searchPod};
                 dispatch({type: 'SEARCH_POD', pods });
             })
@@ -118,3 +117,12 @@ export const deletePod = (id) => {
             .catch((err) => dispatch({type: 'UPDATE_POD_ERROR'}, err));
     }
 };
+
+export const loggedIn = (profile) => {
+    return (dispatch, getState) => {
+        console.log('logged-in:', profile);
+
+        dispatch({type: 'LOGGEN_IN', profile})
+    }
+
+}

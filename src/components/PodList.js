@@ -59,7 +59,8 @@ class PodList extends Component {
     }
 
     render() {
-        const {pods} = this.props;
+        const pods = this.props.pods;
+
         return (
             <div className="container">
                 <div className="section">
@@ -83,7 +84,7 @@ class PodList extends Component {
                         </form>
                     </div>
 
-                    {pods && pods.map(pod => {
+                    {pods && pods['pods'].map(pod => {
                         return <Link to = {'/pod/' + pod.id} key = {pod.id}>
                             <PodRecord pod = {pod} key = {pod.id}></PodRecord>
                         </Link>

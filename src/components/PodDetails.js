@@ -18,8 +18,14 @@ export class PodDetails extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+
         if(e.nativeEvent.submitter.name==='update') {
-            this.props.updatePod(this.state);
+
+            let des = `${this.state.description} [updated by ${this.props.user.name}]`;
+            console.log('update:', this.state);
+            console.log('update:', {...this.state, description:des});
+            this.props.updatePod({...this.state, description:des});
+
             this.props.history.push('/');
         }
         else {
@@ -62,8 +68,8 @@ export class PodDetails extends Component {
 const mapStateToProps  = (state, ownProps) => {
     const id = ownProps.match.params.id;
     const pods = state.pods;
-    const pod = pods ? pods.find(e => e.id===id) : null;
-    return {pod: pod};
+    const pod = pods ? pods['pods'].find(e => e.id===id) : null;
+    return {pod: pod, user:state.login};
 }
 
 const mapDispatchToProps = (dispatch) => {
