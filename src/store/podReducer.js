@@ -24,8 +24,8 @@ const podReducer = (state = initState, action) => {
             console.log('delete pod error', action.err);
             return {...state};
         case 'LOGGEN_IN':
-            console.log('LOGGEN_IN', {...state, login:action.profile});
-            return {...state, status:action.type, login:action.profile}
+            console.log('LOGGEN_IN', {...state, login:action.login});
+            return {...state, status:action.type, login:action.login}
         default:    
             return {...state};
     }

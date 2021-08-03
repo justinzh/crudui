@@ -1,3 +1,5 @@
+// this component is no longer used. it was used to demonstrate google login function with 'react-google-login' module.
+// google login was federated into AZure B2C implemented in Navbar.
 
 import {GoogleLogin} from 'react-google-login'
 import {refreshTokenSetup } from './refreshToken'
@@ -18,7 +20,7 @@ export class LogIn extends Component {
     }
 
     onSuccess = (res) => {
-        this.props.loggedIn(res.profileObj);        
+        this.props.loggedIn(res);        
 
         refreshTokenSetup(res);
         this.props.history.push('/');
@@ -43,7 +45,7 @@ export class LogIn extends Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loggedIn: (profile)=>dispatch(loggedIn(profile))
+        loggedIn: (res)=>dispatch(loggedIn(res))
     }
 }
 

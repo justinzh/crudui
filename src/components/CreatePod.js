@@ -17,7 +17,7 @@ export class CreatePod extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         
-        let des = `${this.state.description} [created by ${this.props.user.name}]`;
+        let des = `${this.state.description} [created by ${this.props.login.name}]`;
         this.props.createPod({...this.state, description:des});
     }
 
@@ -31,9 +31,7 @@ export class CreatePod extends Component {
         let err = false;
         let errMsg = '';
 
-        console.log('create-pod', this.props);
-
-        if(!this.props.user) {
+        if(!this.props.login) {
             return (
                 <div className="container">
                     <form className="white">
@@ -91,7 +89,7 @@ export class CreatePod extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {status: state.status, message: state.message, user: state.login};
+    return {status: state.status, message: state.message, login: state.login};
 }
 
 const mapDispatchToProps = (dispatch) => {

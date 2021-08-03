@@ -21,7 +21,7 @@ export class PodDetails extends Component {
 
         if(e.nativeEvent.submitter.name==='update') {
 
-            let des = `${this.state.description} [updated by ${this.props.user.name}]`;
+            let des = `${this.state.description} [updated by ${this.props.login.name}]`;
             console.log('update:', this.state);
             console.log('update:', {...this.state, description:des});
             this.props.updatePod({...this.state, description:des});
@@ -35,7 +35,7 @@ export class PodDetails extends Component {
     }
 
     render() {
-        const pod = this.props.pod;
+        const {pod, login} = this.props;
 
         let formcontent = pod ? 
                 <form onSubmit = {this.handleSubmit} className="white">
@@ -52,10 +52,12 @@ export class PodDetails extends Component {
                         <label htmlFor="description">{pod.description}</label>           
                         <textarea id="description" className="materialize-textarea" onChange={this.handleChange}></textarea>                 
                     </div>
+                    { login ? 
                     <div className="row">
                         <div className="col s12 m6"><button className="btn pink lighten-1 z-depth-0" name="update">Update</button></div>
                         <div className="col s12 m6"><button className="btn pink lighten-1 z-depth-0" name="delete">Delete</button></div>  
-                    </div>         
+                    </div> 
+                    : <div/> }        
                 </form> : <div>The Pod is missing... please go back to the home page.</div>
         return (
             <div className="container">
@@ -69,7 +71,7 @@ const mapStateToProps  = (state, ownProps) => {
     const id = ownProps.match.params.id;
     const pods = state.pods;
     const pod = pods ? pods['pods'].find(e => e.id===id) : null;
-    return {pod: pod, user:state.login};
+    return {pod: pod, login:state.login};
 }
 
 const mapDispatchToProps = (dispatch) => {

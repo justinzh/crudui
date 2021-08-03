@@ -26,7 +26,10 @@ export const createPod = (pod) => {
                 if(data.errors)
                     dispatch({type: 'CREATE_POD_ERROR', err: data.errors});
                 else
-                    dispatch({type: 'CREATE_POD', data})
+                {
+                    console.log(data);
+                    dispatch({type: 'CREATE_POD', pod: data.data.createPod});
+                }
             })
             .catch((err)=> {
                 dispatch({type: 'CREATE_POD_ERROR', err})
@@ -36,7 +39,8 @@ export const createPod = (pod) => {
 
 export const searchPod = (query) => {
     return (dispatch, getState) => {
-        console.log("query--->", query);
+        let state = getState();
+        console.log("state in search action", state);
 
         const payload = `
             query { 
@@ -89,7 +93,7 @@ export const updatePod = (pod) => {
             .then(res => res.json())
             .then(data => {
                 const upod = data.data.updatePod;
-                dispatch({type: 'UPDATE_POD', upod});
+                dispatch({type: 'UPDATE_POD', pod: upod});
             })
             .catch((err) => dispatch({type: 'UPDATE_POD_ERROR'}, err));
     }
@@ -118,11 +122,11 @@ export const deletePod = (id) => {
     }
 };
 
-export const loggedIn = (profile) => {
+export const loggedIn = (login) => {
     return (dispatch, getState) => {
-        console.log('logged-in:', profile);
+        console.log('logged-in:', login);
 
-        dispatch({type: 'LOGGEN_IN', profile})
+        dispatch({type: 'LOGGEN_IN', login})
     }
 
 }
